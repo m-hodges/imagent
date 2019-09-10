@@ -10,11 +10,11 @@ const styles = StyleSheet.create({
   }
 })
 
-export default class HelloWorldApp extends Component {
+export default class HelloWorld extends Component {
   render () {
     return (
       <View>
-        <Text style={[styles.red, styles.bigText]}>Hello, world!</Text>
+        <Text style={[styles.red, styles.bigText]}>Sup, world!</Text>
       </View>
     );
   }
