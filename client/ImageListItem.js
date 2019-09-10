@@ -1,55 +1,62 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { 
   Image,
   StyleSheet,
   TouchableOpacity
  } from 'react-native'
 
-function pressHandler (evt) {
-    // alert('hi')
-    console.log(evt)
-    // evt.Image.style = {
-    //   width: 400,
-    //   height: 400
-    // }
+export default class ImageListItem extends Component {
+  state = {
+    isLarge: false
   }
 
-const ImageListItem = (props) => {
-  return (
-    <TouchableOpacity 
-      onPress={(evt) => {pressHandler(evt)}}
-      style={styles.touchableContainer}
+  pressHandler () {
+    this.setState({
+      isLarge: !this.state.isLarge
+    })
+  }
+
+  render () {
+    return (
+      <TouchableOpacity 
+      onPress={() => {this.pressHandler()}}
+      style={(!this.state.isLarge) ? styles.imageContainer : styles.largeImageContainer}
       >
-      <Image 
-        source={{uri: props.url}} 
-        style={styles.imageContainer}
-      />
-    </TouchableOpacity>
-  )
+        <Image 
+          source={{uri: this.props.url}} 
+          style={(!this.state.isLarge) ? styles.image : styles.largeImage}
+        />
+      </TouchableOpacity>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
-  touchableContainer: {
+  imageContainer: {
     width: 190,
     height: 190,
     borderRadius: 10,
     margin: 5 
   },
-  imageContainer: {
+  largeImageContainer: {
+    width: 390,
+    height: 390,
+    borderRadius: 10,
+    margin: 5
+  },
+  image: {
     width: 190,
     height: 190,
     borderRadius: 10
   },
-  largeImageContainer: {
-    width: 400,
-    height: 400,
+  largeImage: {
+    width: 390,
+    height: 390,
     borderRadius: 10
   }
 })
 
-export default ImageListItem
-
-
-//state, default isLarge: false, onclick isLarge: !isLarge
-//image, style if isLarge:false - imageContainer, style if 
-//isLarge: true, -largeImageContainer
+//reveal component when isLarge is true
+//component is positioned on top of the image
+//absolute positioning minus its height
+//or top: height of image - height of component
