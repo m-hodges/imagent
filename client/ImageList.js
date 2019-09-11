@@ -13,7 +13,7 @@ export default class ImageList extends Component {
     return (
       <ScrollView contentContainerStyle={styles.layout}>
         {data.cats.map(cat => (
-          <ImageListItem 
+          <ImageListItem
             key={cat.id}
             url={cat.url}
           />
@@ -30,3 +30,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   }
 })
+
+// play with the index values to adapt behaviour
+// and styles - flexbox order

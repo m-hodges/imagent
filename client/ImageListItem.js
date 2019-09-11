@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { 
   Image,
-  StyleSheet,
   TouchableOpacity
  } from 'react-native'
+
+import ImageBanner from './ImageBanner'
+import styles from '../styles/styles'
 
 export default class ImageListItem extends Component {
   state = {
@@ -20,8 +22,8 @@ export default class ImageListItem extends Component {
     return (
       <TouchableOpacity 
       onPress={() => {this.pressHandler()}}
-      style={(!this.state.isLarge) ? styles.imageContainer : styles.largeImageContainer}
-      >
+      style={(!this.state.isLarge) ? styles.imageContainer : styles.largeImageContainer} >
+        <ImageBanner isLarge={this.state.isLarge}/>
         <Image 
           source={{uri: this.props.url}} 
           style={(!this.state.isLarge) ? styles.image : styles.largeImage}
@@ -30,33 +32,3 @@ export default class ImageListItem extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  imageContainer: {
-    width: 190,
-    height: 190,
-    borderRadius: 10,
-    margin: 5 
-  },
-  largeImageContainer: {
-    width: 390,
-    height: 390,
-    borderRadius: 10,
-    margin: 5
-  },
-  image: {
-    width: 190,
-    height: 190,
-    borderRadius: 10
-  },
-  largeImage: {
-    width: 390,
-    height: 390,
-    borderRadius: 10
-  }
-})
-
-//reveal component when isLarge is true
-//component is positioned on top of the image
-//absolute positioning minus its height
-//or top: height of image - height of component
