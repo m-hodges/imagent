@@ -12,10 +12,12 @@ export default class ImageList extends Component {
   render () {
     return (
       <ScrollView contentContainerStyle={styles.layout}>
-        {data.cats.map(cat => (
+        {data.cats.map((cat, i) => (
           <ImageListItem
             key={cat.id}
+            name={cat.name}
             url={cat.url}
+            index={i}
           />
         ))}
       </ScrollView>
@@ -31,5 +33,6 @@ const styles = StyleSheet.create({
   }
 })
 
-// play with the index values to adapt behaviour
-// and styles - flexbox order
+// function to change flexdirection here
+// pass it into imagelistitem
+// in imagelistitem, if index is odd, execute function that was passed down

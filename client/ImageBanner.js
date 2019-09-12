@@ -6,9 +6,13 @@ import styles from '../styles/styles'
 export default class ImageBanner extends Component {
   render () {
     return (
-      <View style={(!this.props.isLarge) ? styles.imageBannerContainer : styles.largeImageBannerContainer}>
+      <View style={
+        (!this.props.isLarge)
+          ? styles.imageBannerContainer
+          : styles.largeImageBannerContainer
+      }>
         <Text style={localStyles.text}>
-          Hi
+          {this.props.name}
         </Text>
       </View>
     )
