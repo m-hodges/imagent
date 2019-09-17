@@ -12,21 +12,22 @@ export default class ImageListItem extends Component {
     isLarge: false
   }
 
-  pressHandler () {
+  pressHandler (evt) {
     this.setState({
       isLarge: !this.state.isLarge
     })
+    this.props.flipFlexDirection(this.props.index)
   }
 
   render () {
     return (
       <TouchableOpacity 
-      onPress={() => {this.pressHandler()}}
+      onPress={(evt) => {this.pressHandler(evt)}}
       style={
         (!this.state.isLarge) 
           ? styles.imageContainer 
           : styles.largeImageContainer
-        } 
+        }
       >
         <ImageBanner isLarge={this.state.isLarge} name={this.props.name}/>
         <Image 
