@@ -1,26 +1,32 @@
 import React from 'react'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
 import {
   StyleSheet,
   View,
-  Dimensions,
-  Text
+  Dimensions
 } from 'react-native'
 
 import Header from './client/Header'
 import ImageList from './client/ImageList'
+import reducer from './client/reducers'
+
+const store = createStore(reducer)
 
 const width = Dimensions.get('window').width
 
 export default function App () {
   return (
-    <View style={styles.container}>
-      <View style={[styles.header, styles.width]}>
-        <Header />
+    <Provider store={store}>
+      <View style={styles.container}>
+        <View style={[styles.header, styles.width]}>
+          <Header />
+        </View>
+        <View style={[styles.body, styles.width]}>
+          <ImageList />
+        </View>
       </View>
-      <View style={[styles.body, styles.width]}>
-        <ImageList />
-      </View>
-    </View>
+    </Provider>
   )
 }
 

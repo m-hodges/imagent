@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
   ScrollView,
   StyleSheet
@@ -8,7 +9,7 @@ import data from '../data/cats'
 
 import ImageListItem from './ImageListItem'
 
-export default class ImageList extends Component {
+class ImageList extends Component {
   render () {
     return (
       <ScrollView contentContainerStyle={ styles.layout }>
@@ -24,6 +25,14 @@ export default class ImageList extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    images: state.images
+  }
+}
+
+export default connect(mapStateToProps)(ImageList)
 
 const styles = StyleSheet.create({
   layout: {
